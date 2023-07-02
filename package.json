@@ -1,6 +1,8 @@
 {
   "name": "test-task-24-play",
   "version": "1.0.0",
+  "private": true,
+  "homepage": "https://chyharov.github.io/test-task-24-play/",
   "description": "",
   "main": "index.js",
   "scripts": {
