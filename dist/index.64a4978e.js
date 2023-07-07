@@ -602,13 +602,14 @@ scene.add(plane);
 plane.rotation.x = -0.5 * Math.PI;
 const gridHelper = new _three.GridHelper(30);
 scene.add(gridHelper);
-const sphereGeometry = new _three.SphereGeometry(4);
+const sphereGeometry = new _three.SphereGeometry(4, 50, 50);
 const sphereMaterial = new _three.MeshBasicMaterial({
     color: 0x0000FF,
-    wireframe: true
+    wireframe: false
 });
 const sphere = new _three.Mesh(sphereGeometry, sphereMaterial);
 scene.add(sphere);
+sphere.position.set(-10, 10, 0);
 function animate(time) {
     box.rotation.x = time / 1000;
     box.rotation.y = time / 1000;
