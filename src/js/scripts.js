@@ -31,7 +31,7 @@ const box = new THREE.Mesh(boxGeometry, boxMaterial);
 scene.add(box);
 
 const planeGeometry = new THREE.PlaneGeometry(30, 30);
-const planeMaterial = new THREE.MeshBasicMaterial({
+const planeMaterial = new THREE.MeshStandardMaterial({
     color: 0xFFFFFF,
     side: THREE.DoubleSide
 })
@@ -43,14 +43,23 @@ const gridHelper = new THREE.GridHelper(30);
 scene.add(gridHelper);
 
 const sphereGeometry = new THREE.SphereGeometry(4, 50, 50);
-const sphereMaterial = new THREE.MeshBasicMaterial({
+const sphereMaterial = new THREE.MeshStandardMaterial({
     color: 0x0000FF,
     wireframe: false
 });
 const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
 scene.add(sphere);
-
 sphere.position.set(-10, 10, 0);
+
+const ambientLight = new THREE.AmbientLight(0x333333);
+scene.add(ambientLight);
+
+const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.8);
+scene.add(directionalLight);
+
+const dLightHelper = new THREE.DirectionalLightHelper(directionalLight)
+scene.add(dLightHelper);
+directionalLight.position.set(-30, 50, 0);
 
 const gui = new dat.GUI();
 
