@@ -594,7 +594,7 @@ const boxMaterial = new _three.MeshBasicMaterial({
 const box = new _three.Mesh(boxGeometry, boxMaterial);
 scene.add(box);
 const planeGeometry = new _three.PlaneGeometry(30, 30);
-const planeMaterial = new _three.MeshBasicMaterial({
+const planeMaterial = new _three.MeshStandardMaterial({
     color: 0xFFFFFF,
     side: _three.DoubleSide
 });
@@ -604,13 +604,20 @@ plane.rotation.x = -0.5 * Math.PI;
 const gridHelper = new _three.GridHelper(30);
 scene.add(gridHelper);
 const sphereGeometry = new _three.SphereGeometry(4, 50, 50);
-const sphereMaterial = new _three.MeshBasicMaterial({
+const sphereMaterial = new _three.MeshStandardMaterial({
     color: 0x0000FF,
     wireframe: false
 });
 const sphere = new _three.Mesh(sphereGeometry, sphereMaterial);
 scene.add(sphere);
 sphere.position.set(-10, 10, 0);
+const ambientLight = new _three.AmbientLight(0x333333);
+scene.add(ambientLight);
+const directionalLight = new _three.DirectionalLight(0xFFFFFF, 0.8);
+scene.add(directionalLight);
+const dLightHelper = new _three.DirectionalLightHelper(directionalLight);
+scene.add(dLightHelper);
+directionalLight.position.set(-30, 50, 0);
 const gui = new _datGui.GUI();
 const options = {
     sphereColor: "#ffea00",
