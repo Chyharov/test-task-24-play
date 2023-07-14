@@ -632,6 +632,8 @@ spotLight.castShadow = true;
 spotLight.angle = 0.2;
 const sLightHelper = new _three.SpotLightHelper(spotLight);
 scene.add(sLightHelper);
+// scene.fog = new THREE.Fog(0xFFFFFFF, 0, 200);
+scene.fog = new _three.FogExp2(0xFFFFFFF, 0.01);
 const gui = new _datGui.GUI();
 const options = {
     sphereColor: "#ffea00",
