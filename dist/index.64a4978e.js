@@ -653,11 +653,31 @@ scene.background = cubeTextureLoader.load([
 ]);
 const box2Geometry = new _three.BoxGeometry(4, 4, 4);
 const box2Material = new _three.MeshBasicMaterial({
-    color: 0x0FF00
 });
-const box2 = new _three.Mesh(box2Geometry, box2Material);
+const box2MultiMaterial = [
+    new _three.MeshBasicMaterial({
+        map: textureLoader.load((0, _starsJpgDefault.default))
+    }),
+    new _three.MeshBasicMaterial({
+        map: textureLoader.load((0, _starsJpgDefault.default))
+    }),
+    new _three.MeshBasicMaterial({
+        map: textureLoader.load((0, _nebulaJpgDefault.default))
+    }),
+    new _three.MeshBasicMaterial({
+        map: textureLoader.load((0, _starsJpgDefault.default))
+    }),
+    new _three.MeshBasicMaterial({
+        map: textureLoader.load((0, _nebulaJpgDefault.default))
+    }),
+    new _three.MeshBasicMaterial({
+        map: textureLoader.load((0, _starsJpgDefault.default))
+    })
+];
+const box2 = new _three.Mesh(box2Geometry, box2MultiMaterial);
 scene.add(box2);
 box2.position.set(0, 15, 10);
+//box2.material.map = textureLoader.load(nebula)
 const gui = new _datGui.GUI();
 const options = {
     sphereColor: "#ffea00",
