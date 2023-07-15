@@ -678,6 +678,19 @@ const box2 = new _three.Mesh(box2Geometry, box2MultiMaterial);
 scene.add(box2);
 box2.position.set(0, 15, 10);
 //box2.material.map = textureLoader.load(nebula)
+const plane2Geometry = new _three.PlaneGeometry(10, 10, 10, 10);
+const plane2Material = new _three.MeshBasicMaterial({
+    color: 0xFFFFFF,
+    wireframe: true
+});
+const plane2 = new _three.Mesh(plane2Geometry, plane2Material);
+scene.add(plane2);
+plane2.position.set(10, 10, 15);
+plane2.geometry.attributes.position.array[0] -= 10 * Math.random();
+plane2.geometry.attributes.position.array[1] -= 10 * Math.random();
+plane2.geometry.attributes.position.array[2] -= 10 * Math.random();
+const lastPositionZ = plane2.geometry.attributes.position.array.length - 1;
+plane2.geometry.attributes.position.array[lastPositionZ] -= 10 * Math.random();
 const gui = new _datGui.GUI();
 const options = {
     sphereColor: "#ffea00",
@@ -725,6 +738,11 @@ function animate(time) {
             intersects[i].object.rotation.y = time / 1000;
         }
     }
+    plane2.geometry.attributes.position.array[0] = 10 * Math.random();
+    plane2.geometry.attributes.position.array[1] = 10 * Math.random();
+    plane2.geometry.attributes.position.array[2] = 10 * Math.random();
+    plane2.geometry.attributes.position.array[lastPositionZ] = 10 * Math.random();
+    plane2.geometry.attributes.position.needsUpdate = true;
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
