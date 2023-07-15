@@ -133,6 +133,27 @@ plane2.geometry.attributes.position.array[2] -= 10 * Math.random();
 const lastPositionZ = plane2.geometry.attributes.position.array.length - 1;
 plane2.geometry.attributes.position.array[lastPositionZ] -= 10 * Math.random();
 
+const sphere2Geometry = new THREE.SphereGeometry(4);
+
+// const vShader = `
+//     void main() {
+//         gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+//     }
+// `;
+
+// const fShader = `
+//     void main() {
+//         gl_FragColor = vec4(0.5, 0.5, 1.0, 1.0);
+//     }
+// `;
+
+const sphere2Material = new THREE.ShaderMaterial({
+    vertexShader: document.getElementById('vertexShader').textContent,  
+    fragmentShader: document.getElementById('fragmentShader').textContent,  
+});
+const sphere2 = new THREE.Mesh( sphere2Geometry, sphere2Material);
+scene.add(sphere2);
+sphere2.position.set(-5, 10, 10);
 
 const gui = new dat.GUI();
 
