@@ -698,7 +698,14 @@ gui.add(options, "angle", 0, 1);
 gui.add(options, "penumbra", 0, 1);
 gui.add(options, "intensity", 0, 1);
 let step = 0;
-let speed = 0.01;
+const mousePosition = new _three.Vector2();
+window.addEventListener("mousemove", function(e) {
+    mousePosition.x = e.clientX / window.innerWidth * 2 - 1;
+    mousePosition.y = -(e.clientY / window.innerHeight) * 2 + 1;
+});
+const rayCaster = new _three.Raycaster();
+const sphereId = sphere.id;
+box2.name = "theBox";
 function animate(time) {
     box.rotation.x = time / 1000;
     box.rotation.y = time / 1000;
@@ -708,11 +715,21 @@ function animate(time) {
     spotLight.penumbra = options.penumbra;
     spotLight.intensity = options.intensity;
     sLightHelper.update();
+    rayCaster.setFromCamera(mousePosition, camera);
+    const intersects = rayCaster.intersectObjects(scene.children);
+    console.log(intersects);
+    for(let i = 0; i < intersects.length; i++){
+        if (intersects[i].object.id === sphereId) intersects[i].object.material.color.set(0xFF00000);
+        if (intersects[i].object.name === "theBox") {
+            intersects[i].object.rotation.x = time / 1000;
+            intersects[i].object.rotation.y = time / 1000;
+        }
+    }
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
 
-},{"three":"ktPTu","three/examples/jsm/controls/OrbitControls.js":"7mqRv","dat.gui":"k3xQk","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","../img/stars.jpg":"29qHg","../img/nebula.jpg":"kmPen"}],"ktPTu":[function(require,module,exports) {
+},{"three":"ktPTu","three/examples/jsm/controls/OrbitControls.js":"7mqRv","dat.gui":"k3xQk","../img/nebula.jpg":"kmPen","../img/stars.jpg":"29qHg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"ktPTu":[function(require,module,exports) {
 /**
  * @license
  * Copyright 2010-2023 Three.js Authors
@@ -33632,10 +33649,10 @@ var index = {
 };
 exports.default = index;
 
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"29qHg":[function(require,module,exports) {
-module.exports = require("2ff80aa81fbd0f0b").getBundleURL("e6MYJ") + "stars.a1d7fe60.jpg" + "?" + Date.now();
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"kmPen":[function(require,module,exports) {
+module.exports = require("ad5cd9c59dab36b9").getBundleURL("e6MYJ") + "nebula.a535bdf2.jpg" + "?" + Date.now();
 
-},{"2ff80aa81fbd0f0b":"lgJ39"}],"lgJ39":[function(require,module,exports) {
+},{"ad5cd9c59dab36b9":"lgJ39"}],"lgJ39":[function(require,module,exports) {
 "use strict";
 var bundleURL = {};
 function getBundleURLCached(id) {
@@ -33670,9 +33687,9 @@ exports.getBundleURL = getBundleURLCached;
 exports.getBaseURL = getBaseURL;
 exports.getOrigin = getOrigin;
 
-},{}],"kmPen":[function(require,module,exports) {
-module.exports = require("ad5cd9c59dab36b9").getBundleURL("e6MYJ") + "nebula.a535bdf2.jpg" + "?" + Date.now();
+},{}],"29qHg":[function(require,module,exports) {
+module.exports = require("2ff80aa81fbd0f0b").getBundleURL("e6MYJ") + "stars.a1d7fe60.jpg" + "?" + Date.now();
 
-},{"ad5cd9c59dab36b9":"lgJ39"}]},["4FhkU","goJYj"], "goJYj", "parcelRequire6872")
+},{"2ff80aa81fbd0f0b":"lgJ39"}]},["4FhkU","goJYj"], "goJYj", "parcelRequire6872")
 
 //# sourceMappingURL=index.64a4978e.js.map
