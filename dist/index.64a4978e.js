@@ -774,6 +774,11 @@ function animate(time) {
     renderer.render(scene, camera);
 }
 renderer.setAnimationLoop(animate);
+window.addEventListener("resize", function() {
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
 
 },{"three":"ktPTu","three/examples/jsm/controls/OrbitControls.js":"7mqRv","dat.gui":"k3xQk","../img/nebula.jpg":"kmPen","../img/stars.jpg":"29qHg","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","46d709d3e4bdc395":"fQn5k","three/examples/jsm/loaders/GLTFLoader.js":"dVRsF"}],"ktPTu":[function(require,module,exports) {
 /**
