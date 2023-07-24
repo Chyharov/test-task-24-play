@@ -1,9 +1,12 @@
 import * as THREE from 'three'
 import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls.js'
 import * as dat from 'dat.gui'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 import nebula from '../img/nebula.jpg';
 import stars from '../img/stars.jpg';
+
+const monkeyURL = new URL('../assets/monkey.glb', import.meta.url);
 
 const renderer = new THREE.WebGLRenderer();
 
@@ -154,6 +157,16 @@ const sphere2Material = new THREE.ShaderMaterial({
 const sphere2 = new THREE.Mesh( sphere2Geometry, sphere2Material);
 scene.add(sphere2);
 sphere2.position.set(-5, 10, 10);
+
+const assetLoader = new GLTFLoader()
+
+assetLoader.load(monkeyURL.href, function (gltf) {
+    const model = gltf.scene;
+    scene.add(model);
+    model.position.set(-12, 4, 10);
+}, undefined, function (error) {
+    console.error(error);
+});
 
 const gui = new dat.GUI();
 
